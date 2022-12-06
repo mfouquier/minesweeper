@@ -13,7 +13,7 @@ export default function GridElements() {
 
     for (let i = 0; i < 10; i++) {
       const gridBox = {
-        value: '' || 0,
+        value: 0,
         isClicked: false
       }
       gridRow.push(gridBox)
@@ -31,7 +31,7 @@ export default function GridElements() {
       let randNum1 = Math.floor(Math.random() * num)
       let randNum2 = Math.floor(Math.random() * num)
       if (allElements[randNum1][randNum2].value === bomb) {
-        allElements[randNum1][randNum2 + 1].value = bomb
+        allElements[randNum1 - 1][randNum2 + 1].value = bomb
       }
       allElements[randNum1][randNum2].value = bomb
     }
@@ -41,48 +41,27 @@ export default function GridElements() {
     for (let i = 0; i < allElements.length; i++) {
       for (let x = 0; x < allElements[i].length; x++) {
         if (allElements[i][x].value === '💣') {
-          if (allElements[i][x + 1] !== undefined && allElements[i][x + 1] !== '💣') {
-            allElements[i][x + 1].value++;
-
-            if (allElements[i][x - 1] !== undefined && allElements[i][x - 1] !== '💣') {
-              allElements[i][x - 1].value++;
-
-              if (allElements[i - 1][x - 1] !== undefined && allElements[i - 1][x - 1] !== '💣') {
-                allElements[i - 1][x - 1].value++;
-
-                if (allElements[i - 1][x] !== undefined && allElements[i - 1][x] !== '💣') {
-                  allElements[i - 1][x].value++;
-
-
-                  if (allElements[i - 1][x + 1] !== undefined && allElements[i - 1][x + 1] !== '💣') {
-                    allElements[i - 1][x + 1].value++;
-
-                    if (allElements[i + 1][x - 1] !== undefined && allElements[i + 1][x - 1] !== '💣') {
-                      allElements[i + 1][x - 1].value++;
-
-                      if (allElements[i + 1][x] !== undefined && allElements[i + 1][x] !== '💣') {
-                        allElements[i + 1][x].value++;
-
-                        if (allElements[i + 1][x + 1] !== undefined && allElements[i + 1][x + 1] !== '💣') {
-                          allElements[i + 1][x + 1].value++;
-
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
+          continue;
         }
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i][x + 1] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i][x - 1] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i - 1][x - 1] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i - 1][x] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i - 1][x + 1] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x - 1] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x] === '💣') allElements[i][x].value++;
+
+        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x + 1] === '💣') allElements[i][x].value++;
       }
     }
   }
-
-
-
-
-
 
   fillTheGrid(10)
   console.log(allElements)

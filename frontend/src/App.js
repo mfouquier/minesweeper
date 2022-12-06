@@ -1,10 +1,10 @@
 import React from "react";
-import Gameboard from "./Components/Gameboard";
+import GridElements from "./Components/GridElements";
 
 function App() {
   return (
     <div>
-      <Gameboard />
+      <GridElements />
     </div>
   );
 }
