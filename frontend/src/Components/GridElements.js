@@ -40,32 +40,31 @@ export default function GridElements() {
   const setValuesForBombProximity = () => {
     for (let i = 0; i < allElements.length; i++) {
       for (let x = 0; x < allElements[i].length; x++) {
-        if (allElements[i][x].value === '💣') {
-          continue;
-        }
+        if (allElements[i][x].value === '💣') continue;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i][x + 1] === '💣') allElements[i][x].value++;
+        if (x + 1 <= 9 && allElements[i][x + 1] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i][x - 1] === '💣') allElements[i][x].value++;
+        if (x - 1 >= 0 && allElements[i][x - 1] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i - 1][x - 1] === '💣') allElements[i][x].value++;
+        if (i - 1 >= 0 && x - 1 >= 0 && allElements[i - 1][x - 1] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i - 1][x] === '💣') allElements[i][x].value++;
+        if (i - 1 >= 0 && allElements[i - 1][x] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i - 1][x + 1] === '💣') allElements[i][x].value++;
+        if (i - 1 >= 0 && x + 1 <= 9 && allElements[i - 1][x + 1] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x - 1] === '💣') allElements[i][x].value++;
+        if (x - 1 >= 0 && i + 1 <= 9 && allElements[i + 1][x - 1] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x] === '💣') allElements[i][x].value++;
+        if (i + 1 <= 9 && allElements[i + 1][x] === '💣') allElements[i][x].value = allElements[i][x] + 1;
 
-        if (i - 1 >= 0 && x - 1 >= 0 && i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x + 1] === '💣') allElements[i][x].value++;
+        if (i + 1 <= 9 && x + 1 <= 9 && allElements[i + 1][x + 1] === '💣') allElements[i][x].value = allElements[i][x] + 1;
       }
     }
   }
 
   fillTheGrid(10)
-  console.log(allElements)
+
   setValuesForBombProximity()
+  console.log(allElements)
 
   return (
     <Container>
